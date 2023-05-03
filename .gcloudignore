@@ -12,6 +12,7 @@
 # below:
 .git
 .gitignore
-
+nodejs-rust/node_modules
+nodejs-rust/target
 node_modules
 #!include:.gitignore
