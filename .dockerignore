@@ -1,2 +1,6 @@
 nodejs-rust/node_modules
 nodejs-rust/target
+node_modules/
+*-key.json
+*.swp
+.env

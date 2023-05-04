@@ -12,6 +12,8 @@
 # below:
 .git
 .gitignore
+.env
+*-key.json
 nodejs-rust/node_modules
 nodejs-rust/target
 node_modules

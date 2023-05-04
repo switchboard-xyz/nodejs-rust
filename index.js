@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const port = 8080;
 const dotenv = require("dotenv");
+const fs = require("fs");
 dotenv.config();
 app.get("/sum", (req, res) => {
   const { a, b } = req.query;
@@ -12,7 +13,7 @@ app.get("/sum", (req, res) => {
 });
 app.get("/get-repos", async (req, res) => {
   const { org } = req.query;
-  const key = process.env.GH_KEY;
+  const key = fs.readFileSync(process.env.SECRET_KEY_PATH, "utf8");
   const result = await nodejs_rust.callSecretApi(key, org);
   res.json({ result });
 });
