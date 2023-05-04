@@ -16,6 +16,8 @@
 	},
 	"dependencies": {
 		"@google-cloud/functions-framework": "^3.1.0",
+		"dotenv": "^16.0.3",
+		"express": "^4.18.2",
 		"nodejs-rust": "file:nodejs-rust"
 	},
 	"homepage": "https://github.com/switchboard-xyz/gcf-rust-example#readme"

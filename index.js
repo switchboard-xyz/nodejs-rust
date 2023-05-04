@@ -1,27 +1,26 @@
-const functions = require("@google-cloud/functions-framework");
 const nodejs_rust = require("nodejs-rust");
-// Register an HTTP function with the Functions Framework that will be executed
-// when you make an HTTP request to the deployed function's endpoint.
-console.log("starting functions...");
-
-var http = require('http');
-
-//create a server object:
-http.createServer(function (req, res) {
-  res.write('Hello World!'); //write a response to the client
-  res.end(); //end the response
-}).listen(8080);
-console.log("server started");
-functions.http("run-function", (req, res) => {
-  console.log("Hello, world!");
+const express = require("express");
+const app = express();
+const port = 8080;
+const dotenv = require("dotenv");
+dotenv.config();
+app.get("/sum", (req, res) => {
   const { a, b } = req.query;
-  res.send(`SUM: ${nodejs_rust.sum(a, b)}`);
+  const result = nodejs_rust.sum(Number(a), Number(b));
+
+  res.json({ result });
+});
+app.get("/get-repos", async (req, res) => {
+  const { org } = req.query;
+  const key = process.env.GH_KEY;
+  const result = await nodejs_rust.callSecretApi(key, org);
+  res.json({ result });
 });
 
-functions.http("call-secret-api", (req, res) => {
-  const { org } = req.query;
-  const key = "secret-key"; // add secret logic here
-  const result = nodejs_rust.callSecretApi(key, org);
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 
-  res.send(`Result: ${result}`);
+app.listen(port, () => {
+  console.log(`listening on port ${port}`);
 });

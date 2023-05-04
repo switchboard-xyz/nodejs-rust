@@ -16,6 +16,7 @@ pub async fn call_secret_api(key: String, org: String) -> String {
     .get(format!("https://api.github.com/orgs/{}/repos", org))
     .header(CONTENT_TYPE, "application/json")
     .header(AUTHORIZATION, format!("Bearer {}", key))
+    .header("User-Agent", "nodejs-rust")
     .send()
     .await
     .unwrap()
