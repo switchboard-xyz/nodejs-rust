@@ -15,7 +15,8 @@
 		"url": "https://github.com/switchboard-xyz/gcf-rust-example/issues"
 	},
 	"dependencies": {
-		"@google-cloud/functions-framework": "^3.1.0"
+		"@google-cloud/functions-framework": "^3.1.0",
+		"nodejs-rust": "file:nodejs-rust"
 	},
 	"homepage": "https://github.com/switchboard-xyz/gcf-rust-example#readme"
 }

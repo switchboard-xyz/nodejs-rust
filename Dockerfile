@@ -22,4 +22,6 @@ RUN yarn install && yarn build
 WORKDIR /usr/src/app
 RUN npm i
 RUN npm i nodejs-rust/
+EXPOSE 8080
+ENV PORT 8080
 CMD [ "node", "index.js" ]
